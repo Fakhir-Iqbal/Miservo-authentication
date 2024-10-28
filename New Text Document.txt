@@ -1,0 +1,8 @@
+Ambulance@543
+
+sharjeelhussain877
+
+mongodb+srv://<username>:<password>@ambulancecluster.lfhdmpz.mongodb.net/
+
+
+mongodb+srv://sharjeelhussain877:Ambulance@543@ambulancecluster.lfhdmpz.mongodb.net/
