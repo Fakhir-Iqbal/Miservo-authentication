@@ -59,8 +59,6 @@ const createUser = async (req, res) => {
 
     delete data._doc.password;
     delete data._doc.__v;
-    delete data._doc.type;
-    delete data._doc.gender;
 
     return res.status(StatusCodes.OK).json(createRes(StatusCodes.OK, ReasonPhrases.OK, { ...data._doc, token }));
   } catch (error) {
