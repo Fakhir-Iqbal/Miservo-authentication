@@ -1,5 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
+
+
 const dataSchema = new Schema(
   {
     firstName: {
@@ -31,13 +33,38 @@ const dataSchema = new Schema(
       required: true,
       minlength: 6,
     },
-    contactNumber: {
+    phone: {
       type: Number,
       minlength: 11,
     },
+    birthdate: {
+      type: String,
+      default: '00-00-0000',
+    },
+    city: {
+      type: String,
+      default: 'karachi',
+    },
+    state: {
+      type: String,
+    },
+    zip: {
+      type: String,
+    },
+    maritalStatus: {
+      type: String,
+    },
+    address_1: {
+      type: String,
+    },
+    address_2: {
+      type: String,
+    },
+    checkInDuration: {
+      type: String,
+    },
     gender: {
       type: String,
-      enum: ['male', 'female', 'other'],
       trim: true,
       default: 'male',
     },
