@@ -18,7 +18,7 @@ const createUser = async (req, res) => {
   const { email, password } = req.body;
 
 
-  const isRequiredKeysExist = isAllRequiredKeyExist(["firstName", "lastName", "phoneNum", "email", "password"], req.body)
+  const isRequiredKeysExist = isAllRequiredKeyExist(["firstName", "lastName", "phone", "email", "password"], req.body)
 
   const checkObjectKeysFilled = !isAllKeysHasValue(req?.body)
   const isValidEmail = !validateEmail(email)
