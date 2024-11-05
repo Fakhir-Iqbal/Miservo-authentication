@@ -9,7 +9,8 @@ import createUser from "./user/createUser.js";
 import loginUser from "./user/loginUser.js";
 import modifyUser from "./user/modifyUser.js";
 import deleteUser from "./user/deleteUser.js";
-import getAllUsers from "./user/getAllUsres.js";
+import forgetUser from './user/forgetPassword.js'
+import resetPassword from "./user/resetPassword.js";
 
 const router = Router();
 
@@ -22,7 +23,8 @@ router.post("/signin", loginAdmin); // POST
 
 router.post("/create", createUser); // POST
 router.post("/login", loginUser); // POST
-router.get("/get-all-user", verifyAdminToken, getAllUsers); // GET
+router.post("/forget", forgetUser); // POST
+router.post("/reset-password/:token", resetPassword); // POST
 router.patch("/edit-user/:id", verifyToken, modifyUser); // PATCH
 router.delete("/delete-user", deleteUser); // DELETE
 

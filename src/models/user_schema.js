@@ -73,6 +73,12 @@ const dataSchema = new Schema(
       index: true,
       default: "user"
     },
+    resetToken: {
+      type: String,
+    },
+    resetTokenExpiry: {
+      type: Date,
+    }
   },
   { timestamps: true }
 );

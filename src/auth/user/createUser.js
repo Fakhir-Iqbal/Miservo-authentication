@@ -18,7 +18,7 @@ const createUser = async (req, res) => {
   const { email, password } = req.body;
 
 
-  const isRequiredKeysExist = isAllRequiredKeyExist(["firstName", "lastName", "phone", "email", "password"], req.body)
+  const isRequiredKeysExist = isAllRequiredKeyExist(['firstName', 'lastName', 'phone', 'email', 'password', 'birthdate', 'city', 'state', 'zip', 'gender', 'checkInDuration', 'maritalStatus'], req.body)
 
   const checkObjectKeysFilled = !isAllKeysHasValue(req?.body)
   const isValidEmail = !validateEmail(email)
@@ -66,7 +66,7 @@ const createUser = async (req, res) => {
     if (error.code === 11000) { // if email already exist
       return res.status(StatusCodes.BAD_REQUEST).json(createRes(StatusCodes.BAD_REQUEST, "Email is already registered"));
     }
-
+    
     // if (error.name === "ValidationError") { // Handle other validation errors
     //   let messages = [];
     //   for (let field in error.errors) {
