@@ -163,63 +163,20 @@ function getTokenVal(tokenVal) {
   return extractedTokenVal
 }
 
-async function getRoute(profile = 'bike', currentlocation, destination) {
-  try {
-    const query = new URLSearchParams({
-      key: "b16b1d60-3c8c-4cd6-bae6-07493f23e589"
-    }).toString();
 
-    const resp = await fetch(
-      `https://graphhopper.com/api/1/route?${query}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          profile: profile, // profile could be "car", "car_avoid_motorway", "car_avoid_ferry", "truck", "small_truck", "scooter", "foot", "racingbike", "mtb"
-          points: [
-            currentlocation,
-            destination
-          ],
-          point_hints: ["Main Street", "High Street"],
-          snap_preventions: [
-            'motorway',
-            'ferry',
-            'tunnel'
-          ],
-          details: ['road_class', 'surface']
-        })
-      }
-    );
+function decodeToken (token) {
+  if (!token) return 'Token is required'
 
-    const data = await resp.json();
-    return data
-  } catch (e) {
-    return e
+  let decoded = jwt.verify(token, process.env.JWT_SECRET);
+  if (decoded) {
+      return decoded;
   }
-}
-
-const vehicleData = [
-  { type: 'edhi', efficiencyKmPerL: 10 / 3, costPerL: 283.79 },
-  { type: 'aman', efficiencyKmPerL: 10 / 5, costPerL: 346.7 },
-  { type: 'chipa', efficiencyKmPerL: 10 / 3, costPerL: 283.79 },
-];
-
-function calculateFuelAndFuelCost(distance = 5, vanType = 'edhi') {
-  // distance should be in km
-  const vehicle = vehicleData.find(
-    elem => elem.type === vanType?.toLowerCase().trim()
-  );
-  const fuelRequired = distance / vehicle.efficiencyKmPerL;
-  const fuelCost = fuelRequired * vehicle.costPerL;
-  return {
-    fuelRequired, fuelCost
-  };
+  return false
 }
 
 
 export {
+  decodeToken,
   validateEmail,
   validatePassword,
   isAllKeysHasValue,
@@ -233,6 +190,4 @@ export {
   isNumberContainstring,
   convertDateFormat,
   getTokenVal,
-  getRoute,
-  calculateFuelAndFuelCost,
 };

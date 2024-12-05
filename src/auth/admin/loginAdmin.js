@@ -1,4 +1,4 @@
-import { AdminModel } from "./../../models/index.js";
+import { AdminModel } from "../../models/index.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { compareSync } from "bcrypt";
@@ -8,10 +8,11 @@ import {
   createRes,
   isAllRequiredKeyExist,
   validateAdminPassword,
-} from "./../../utils/index.js";
+} from "../../utils/index.js";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
 dotenv.config();
+
 
 const loginAdmin = async (req, res) => {
   const { email, password, type } = req.body;
