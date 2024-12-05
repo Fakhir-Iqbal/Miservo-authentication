@@ -1,7 +1,7 @@
 import { AdminModel } from "./../../models/index.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import bcrypt, { compareSync } from "bcrypt";
+import { compareSync } from "bcrypt";
 import {
   validateEmail,
   isAllKeysHasValue,
