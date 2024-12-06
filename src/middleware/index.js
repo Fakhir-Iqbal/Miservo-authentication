@@ -9,7 +9,7 @@ export async function verifyToken(req, res, next) {
   const { authorization } = req.headers;
 
   if (!authorization) {
-    return res.status(StatusCodes.FORBIDDEN).json(createRes(StatusCodes.FORBIDDEN, ReasonPhrases.FORBIDDEN));
+    return res.status(StatusCodes.FORBIDDEN).json(createRes(StatusCodes.FORBIDDEN, 'Token is required'));
   }
 
   try {
