@@ -20,7 +20,7 @@ export default async function saveAttorney (req, res) {
       .json(createRes(StatusCodes.OK, 'Attorney saved successfully', savedData));
   } catch (error) {
     if (error.code === 11000) {
-      res.status(StatusCodes.FORBIDDEN).json(createRes(StatusCodes.FORBIDDEN, 'email already exist'));
+      return res.status(StatusCodes.FORBIDDEN).json(createRes(StatusCodes.FORBIDDEN, 'email already exist'));
     }
     if (error.name === "ValidationError") {
       const errors = Object.values(error.errors).map(err => ({
