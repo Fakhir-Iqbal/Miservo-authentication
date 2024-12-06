@@ -23,7 +23,7 @@ let Beneficiary = { // done
     added: "Object ID" // by token
   }
   
-  let attorney = { // atorney mean wakeel urdu mai
+  let attorney = { // done
     firstName: "sharjeel",
     lastName: "sharjeel",
     contactNumber: "0365846",
@@ -39,7 +39,7 @@ let Beneficiary = { // done
   }
   
   
-  let gernalOverview = {
+  let gernalOverview = { // done
     firstName: "sharjeel",
     lastName: "sharjeel",
     contactNumber: "0365846",
