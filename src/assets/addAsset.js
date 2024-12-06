@@ -20,7 +20,7 @@ export default async function saveAsset (req, res) {
             title,
             beneficiary,
             description,
-            documents,
+            // documents,
             attorney,
             courtInformation,
             addedBy: _id

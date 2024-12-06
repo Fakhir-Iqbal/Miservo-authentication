@@ -13,7 +13,7 @@ let Beneficiary = { // done
     added: "Object ID" // by token
 }
   
-  let newAsset = {
+  let newAsset = { // done
     title: "Plot",
     beneficiary: "Fakhir",
     discription: "lorem ipsum something can write over here",

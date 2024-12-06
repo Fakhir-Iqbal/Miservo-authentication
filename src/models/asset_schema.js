@@ -11,10 +11,10 @@ const assetSchema = new mongoose.Schema({
     },
     description: {
         type: String
-    }, // Corrected spelling from "discription" to "description"
+    },
     documents: {
-        type: String,
-        required: true
+        type: Array,
+        // required: true
     },
     attorney: {
         type: Boolean, 
