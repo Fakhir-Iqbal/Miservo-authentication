@@ -23,7 +23,7 @@ const assetSchema = new mongoose.Schema({
     courtInformation: {
         type: String
      },
-    addedBy: {
+    added: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true

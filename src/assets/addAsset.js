@@ -8,7 +8,7 @@ export default async function saveAsset (req, res) {
 
     try {
         const token = req.headers.authorization.split(' ')[1];
-        const _id = decodeToken(token);
+        const { _id } = decodeToken(token);
 
         if (!_id) {
             return res.status(StatusCodes.UNAUTHORIZED).json(createRes(StatusCodes.UNAUTHORIZED, 'Token is required'));

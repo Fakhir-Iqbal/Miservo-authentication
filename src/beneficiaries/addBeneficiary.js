@@ -6,7 +6,7 @@ import { decodeToken } from "../utils/index.js";
 
 export const saveBeneficiary = async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
-    const _id = decodeToken(token);
+    const { _id } = decodeToken(token);
 
     try {
         const beneficiaryData = req.body;

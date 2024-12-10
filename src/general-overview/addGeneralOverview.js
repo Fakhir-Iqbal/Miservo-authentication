@@ -6,7 +6,7 @@ import { decodeToken } from "../utils/index.js";
 export const saveGeneralOverview = async (req, res) => {
     try {
         const token = req.headers.authorization.split(' ')[1];
-        const _id = decodeToken(token);
+        const { _id } = decodeToken(token);
 
         const generalOverviewData = { ...req.body, added: _id };
 

@@ -6,11 +6,11 @@ import { decodeToken } from '../utils/index.js';
 export default async function saveAttorney (req, res) {
   try {
     const token = req.headers.authorization.split(' ')[1];
-    const addedById = decodeToken(token);
+    const { _id } = decodeToken(token);
 
     const attorneyData = {
       ...req.body,
-      added: addedById,
+      added: _id,
     };
 
     const savedData = await AttorneyModel.create(attorneyData);

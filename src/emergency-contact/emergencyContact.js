@@ -1,5 +1,3 @@
-// controllers/emergencyContactController.js
-
 import EmergencyContact from '../models/emergency_contact.js';
 import { createRes } from "../utils/index.js";
 import { StatusCodes } from "http-status-codes";
@@ -9,7 +7,7 @@ export default async function saveEmergencyContact(req, res) {
 
     try {
         const token = req.headers.authorization.split(' ')[1];
-        const _id = decodeToken(token);
+        const { _id } = decodeToken(token);
 
         const { primary, secondary, other_1, other_2 } = req.body;
 

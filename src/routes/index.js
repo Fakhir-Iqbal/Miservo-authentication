@@ -13,6 +13,6 @@ router.use("/beneficiary", beneficiary);
 router.use('/asset', asset)
 router.use('/attorney', attorney)
 router.use('/overview', generalOverview)
-router.use('/emergency', emergencyContact)
+router.use('/emergency-contact', emergencyContact)
 
 export default router;
