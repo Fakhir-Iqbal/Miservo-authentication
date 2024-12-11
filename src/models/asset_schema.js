@@ -5,8 +5,9 @@ const assetSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    beneficiary: {
-        type: String, 
+    beneficiary: { 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'beneficiary',
         required: true
     },
     description: {
