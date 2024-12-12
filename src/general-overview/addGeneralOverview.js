@@ -12,6 +12,10 @@ export const saveGeneralOverview = async (req, res) => {
 
         const savedGeneralOverview = await GeneralOverview.create(generalOverviewData);
 
+        if (!savedGeneralOverview) {
+            return res.status(StatusCodes.FORBIDDEN).json(createRes(StatusCodes.FORBIDDEN, 'Failed to save data'));
+        }
+
         return res
             .status(StatusCodes.OK)
             .json(createRes(StatusCodes.OK, 'General overview saved successfully', savedGeneralOverview));

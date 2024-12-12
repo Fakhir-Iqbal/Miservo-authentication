@@ -27,7 +27,7 @@ export const saveBeneficiary = async (req, res) => {
         const savedBeneficiary = await beneficiary.save();
         
         if (!saveBeneficiary) {
-            return res.status(StatusCodes.OK).json(createRes(StatusCodes.OK, 'Failed to save data'));
+            return res.status(StatusCodes.FORBIDDEN).json(createRes(StatusCodes.FORBIDDEN, 'Failed to save data'));
         }
 
         delete saveBeneficiary.__v

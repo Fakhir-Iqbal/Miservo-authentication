@@ -11,7 +11,7 @@ export default async function saveEmergencyContact(req, res) {
 
         const { primary, secondary, other_1, other_2 } = req.body;
 
-        const newEmergencyContact = new EmergencyContact({
+        const emergencyContact = new EmergencyContact({
             primary,
             secondary,
             other_1,
@@ -19,7 +19,11 @@ export default async function saveEmergencyContact(req, res) {
             added: _id
         });
 
-        const savedEmergencyContact = await newEmergencyContact.save();
+        const savedEmergencyContact = await emergencyContact.save();
+
+        if (!savedEmergencyContact) {
+            return res.status(StatusCodes.FORBIDDEN).json(createRes(StatusCodes.FORBIDDEN, 'Failed to save data'));
+        }
 
         return res.status(StatusCodes.OK).json(createRes(StatusCodes.OK, 'Emergency contact successfully saved', savedEmergencyContact));
 

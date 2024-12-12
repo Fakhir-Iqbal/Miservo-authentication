@@ -28,6 +28,10 @@ export default async function saveAsset (req, res) {
 
         const savedAsset = await newAsset.save();
 
+        if (!savedAsset) {
+            return res.status(StatusCodes.FORBIDDEN).json(createRes(StatusCodes.FORBIDDEN, 'Failed to save data'));
+        }
+
         return res.status(StatusCodes.OK).json(createRes(StatusCodes.OK, 'Asset saved successfully', savedAsset));
     } catch (error) {
         if (error.name === "ValidationError") {
