@@ -30,6 +30,13 @@ export default async function pullAttorney(req, res) {
                 $limit: parseInt(limit)
             }
         ]);
+
+        if (!result.length) {
+            return res
+            .status(StatusCodes.NOT_FOUND)
+            .json(createRes(StatusCodes.NOT_FOUND, 'Data not found'));
+        }
+        
         result.forEach(v => {
             delete v.added
             delete v.__v
