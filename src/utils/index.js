@@ -4,9 +4,7 @@ import dotenv from "dotenv";
 import {
   emailRegex,
   passwordRegex,
-  adminPasswordRegex,
   dateRegex,
-  fuelPrice,
 } from "../constants/index.js";
 import { StatusCodes } from "http-status-codes";
 
@@ -124,29 +122,6 @@ function convertDateFormat(date) { // date should be '10 12 2022'
   return convertedDate
 }
 
-function compareDates(issueDate, expiryDate) {
-  if (!isValidDateFormat(issueDate) || !isValidDateFormat(expiryDate)) {
-    return {
-      valid: false,
-      message: "One or both dates are in an invalid format",
-    };
-  }
-
-  const [issueDay, issueMonth, issueYear] = issueDate.split(" ").map(Number);
-  const [expiryDay, expiryMonth, expiryYear] = expiryDate
-    .split(" ")
-    .map(Number);
-
-  const issue = new Date(issueYear, issueMonth - 1, issueDay);
-  const expiry = new Date(expiryYear, expiryMonth - 1, expiryDay);
-
-  if (issue > expiry) {
-    return { valid: false, message: "Issue date is greater than expiry date" };
-  }
-
-  return { valid: true, message: "Dates are valid" };
-}
-
 function creatHash(password) {
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(password, salt);
@@ -185,7 +160,6 @@ export {
   validateAdminPassword,
   isAllRequiredKeyExist,
   isValidDateFormat,
-  compareDates,
   creatHash,
   isNumberContainstring,
   convertDateFormat,

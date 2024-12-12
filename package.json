@@ -1,7 +1,7 @@
 {
-  "name": "ambulanceapi",
+  "name": "miservo",
   "version": "1.0.0",
-  "description": "This is ambulance tracking application",
+  "description": "This is miservo back",
   "main": "index.js",
   "scripts": {
     "test": "nodemon index.js"

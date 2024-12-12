@@ -8,10 +8,26 @@ export const saveBeneficiary = async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     const { _id } = decodeToken(token);
 
+    let dataToSave = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        contactNumber: req.body.contactNumber,
+        whatsappNumber: req.body.whatsappNumber,
+        relationShip: req.body.relationShip,
+        email: req.body.email,
+        anotherEmail: req.body.anotherEmail,
+        firstAddress: req.body.firstAddress,
+        secondAddress: req.body.secondAddress,
+        assetsAssigned: req.body.assetsAssigned,
+        added: _id
+    }; // this is to save after test
+
     try {
-        const beneficiaryData = req.body;
-        const beneficiary = new BeneficiaryModel({...beneficiaryData, added: _id});
+        const beneficiary = new BeneficiaryModel({ dataToSave });
         const savedBeneficiary = await beneficiary.save();
+        
+        delete saveBeneficiary.__v
+        delete saveBeneficiary.added
         
         return res.status(StatusCodes.OK).json(createRes(StatusCodes.OK, 'Beneficiary saved successfully', savedBeneficiary));
     } catch (error) {
