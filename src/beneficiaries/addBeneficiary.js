@@ -20,7 +20,7 @@ export const saveBeneficiary = async (req, res) => {
         secondAddress: req.body.secondAddress,
         assetsAssigned: req.body.assetsAssigned,
         added: _id
-    }; // this is to save after test
+    };
 
     try {
         const beneficiary = new BeneficiaryModel({ dataToSave });
