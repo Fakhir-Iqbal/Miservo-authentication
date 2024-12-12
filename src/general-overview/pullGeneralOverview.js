@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import GeneralOverview from '../models/general_overview.js'; // Adjust the path as necessary
+import { GeneralOverview } from '../models/index.js';
 import { createRes } from "../utils/index.js";
 import { StatusCodes } from "http-status-codes";
 import { decodeToken } from "../utils/index.js";
@@ -14,7 +14,7 @@ export default async function pullGeneralOverview(req, res) {
             .json(createRes(StatusCodes.UNAUTHORIZED, 'Token is required'));
     }
 
-    const { _id }  = decodeToken(token);
+    const { _id } = decodeToken(token);
 
     try {
         const { skip = 0, limit = 10 } = req.query;
@@ -33,10 +33,10 @@ export default async function pullGeneralOverview(req, res) {
 
         if (!result.length) {
             return res
-            .status(StatusCodes.NOT_FOUND)
-            .json(createRes(StatusCodes.NOT_FOUND, 'Data not found'));
+                .status(StatusCodes.NOT_FOUND)
+                .json(createRes(StatusCodes.NOT_FOUND, 'Data not found'));
         }
-        
+
         result.forEach(v => {
             delete v.added
             delete v.__v

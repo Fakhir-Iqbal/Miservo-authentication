@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import BeneficiaryModel from "../models/beneficiary_schema.js";
+import { BeneficiaryModel } from "../models/index.js";
 import { createRes } from "../utils/index.js";
 import { StatusCodes } from "http-status-codes";
 import { decodeToken } from "../utils/index.js";

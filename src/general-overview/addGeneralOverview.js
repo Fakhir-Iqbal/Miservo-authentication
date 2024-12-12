@@ -1,4 +1,4 @@
-import GeneralOverview from '../models/general_overview.js'; // Adjust the path as necessary
+import { GeneralOverview } from '../models/index.js';
 import { createRes } from "../utils/index.js";
 import { StatusCodes } from "http-status-codes";
 import { decodeToken } from "../utils/index.js";

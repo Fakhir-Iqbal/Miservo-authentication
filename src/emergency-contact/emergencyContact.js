@@ -1,4 +1,4 @@
-import EmergencyContact from '../models/emergency_contact.js';
+import { EmergencyContact } from '../models/index.js';
 import { createRes } from "../utils/index.js";
 import { StatusCodes } from "http-status-codes";
 import { decodeToken } from "../utils/index.js";

@@ -1,4 +1,4 @@
-import BeneficiaryModel from "../models/beneficiary_schema.js";
+import { BeneficiaryModel } from "../models/index.js";
 import { createRes } from "../utils/index.js";
 import { StatusCodes } from "http-status-codes";
 import { decodeToken } from "../utils/index.js";
@@ -25,14 +25,14 @@ export const saveBeneficiary = async (req, res) => {
     try {
         const beneficiary = new BeneficiaryModel({ dataToSave });
         const savedBeneficiary = await beneficiary.save();
-        
+
         if (!saveBeneficiary) {
             return res.status(StatusCodes.FORBIDDEN).json(createRes(StatusCodes.FORBIDDEN, 'Failed to save data'));
         }
 
         delete saveBeneficiary.__v
         delete saveBeneficiary.added
-        
+
         return res.status(StatusCodes.OK).json(createRes(StatusCodes.OK, 'Beneficiary saved successfully', savedBeneficiary));
     } catch (error) {
         return res.status(StatusCodes.BAD_REQUEST).json(createRes(StatusCodes.BAD_REQUEST, 'Error saving beneficiary', error.message,));
