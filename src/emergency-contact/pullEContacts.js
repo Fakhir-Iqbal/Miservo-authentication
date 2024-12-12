@@ -31,6 +31,12 @@ export default async function pullEContacts(req, res) {
             }
         ]);
 
+        if (!result.length) {
+            return res
+            .status(StatusCodes.NOT_FOUND)
+            .json(createRes(StatusCodes.NOT_FOUND, 'Data not found'));
+        }
+
         result.forEach(v => {
             delete v.added
             delete v.__v

@@ -30,11 +30,20 @@ export default async function pullBeneficiaries(req, res) {
                 $limit: parseInt(limit)
             }
         ]);
+        
+
+        if (!result.length) {
+            return res
+            .status(StatusCodes.NOT_FOUND)
+            .json(createRes(StatusCodes.NOT_FOUND, 'Data not found'));
+        }
+
         result.forEach(v => {
             delete v.added
             delete v.__v
             return v
         })
+
         return res
             .status(StatusCodes.OK)
             .json(createRes(StatusCodes.OK, 'Data fetched successfully', result));

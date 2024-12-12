@@ -26,6 +26,10 @@ export const saveBeneficiary = async (req, res) => {
         const beneficiary = new BeneficiaryModel({ dataToSave });
         const savedBeneficiary = await beneficiary.save();
         
+        if (!saveBeneficiary) {
+            return res.status(StatusCodes.OK).json(createRes(StatusCodes.OK, 'Failed to save data'));
+        }
+
         delete saveBeneficiary.__v
         delete saveBeneficiary.added
         
