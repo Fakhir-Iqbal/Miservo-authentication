@@ -21,7 +21,7 @@ export default async function pullAttorney(req, res) {
 
         const result = await AttorneyModel.aggregate([
             {
-                $match: { added: new mongoose.Types.ObjectId(_id) }
+                $match: { addedBy: new mongoose.Types.ObjectId(_id) }
             },
             {
                 $skip: parseInt(skip)

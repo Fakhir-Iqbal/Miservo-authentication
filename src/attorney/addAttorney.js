@@ -10,7 +10,7 @@ export default async function saveAttorney(req, res) {
 
     const attorneyData = {
       ...req.body,
-      added: _id,
+      addedBy: _id,
     };
 
     const savedData = await AttorneyModel.create(attorneyData);

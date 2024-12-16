@@ -19,7 +19,7 @@ export const saveBeneficiary = async (req, res) => {
         firstAddress: req.body.firstAddress,
         secondAddress: req.body.secondAddress,
         assetsAssigned: req.body.assetsAssigned,
-        added: _id
+        addedBy: _id
     };
 
     try {

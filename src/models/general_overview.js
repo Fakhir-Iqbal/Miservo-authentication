@@ -54,7 +54,7 @@ const generalOverviewSchema = new Schema({
         type: String,
         required: true
     },
-    added: {
+    addedBy: {
         type: mongoose.Schema.Types.ObjectId,
         required: true, ref: 'User'
     },
