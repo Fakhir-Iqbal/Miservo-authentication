@@ -14,6 +14,7 @@ const assetSchema = new mongoose.Schema({
         type: String
     },
     documents: {
+        default: [],
         type: Array,
         // required: true
     },
