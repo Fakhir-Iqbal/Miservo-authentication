@@ -21,7 +21,7 @@ export default async function pullBeneficiaries(req, res) {
 
         const result = await BeneficiaryModel.aggregate([
             {
-                $match: { added: new mongoose.Types.ObjectId(_id) }
+                $match: { addedBy: new mongoose.Types.ObjectId(_id) }
             },
             {
                 $skip: parseInt(skip)
@@ -39,7 +39,7 @@ export default async function pullBeneficiaries(req, res) {
         }
 
         result.forEach(v => {
-            delete v.added
+            delete v.addedBy
             delete v.__v
             return v
         })

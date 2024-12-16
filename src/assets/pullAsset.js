@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { AssetModel } from "../models/index.js";
+import { BeneficiaryModel } from "../models/index.js";
 import { createRes } from "../utils/index.js";
 import { StatusCodes } from "http-status-codes";
 import { decodeToken } from "../utils/index.js";
@@ -28,6 +29,20 @@ export default async function pullAsset(req, res) {
             },
             {
                 $limit: parseInt(limit)
+            },
+            {
+                $lookup: {
+                    from: 'beneficiaries', // name of the collection for BeneficiaryModel
+                    localField: 'beneficiary', // field in AssetModel
+                    foreignField: '_id', // field in BeneficiaryModel
+                    as: 'beneficiaryDetails' // alias for the joined data
+                }
+            },
+            {
+                $unwind: {
+                    path: '$beneficiaryDetails',
+                    preserveNullAndEmptyArrays: true
+                }
             }
         ]);
 
@@ -38,7 +53,7 @@ export default async function pullAsset(req, res) {
         }
         
         result.forEach(v => {
-            delete v.added
+            delete v.addedBy
             delete v.__v
             return v
         })

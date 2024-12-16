@@ -38,7 +38,7 @@ export default async function pullEContacts(req, res) {
         }
 
         result.forEach(v => {
-            delete v.added
+            delete v.addedBy
             delete v.__v
             return v
         })

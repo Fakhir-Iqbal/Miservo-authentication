@@ -23,7 +23,7 @@ export default async function saveAsset (req, res) {
             // documents,
             attorney,
             courtInformation,
-            added: _id
+            addedBy: _id
         });
 
         const savedAsset = await newAsset.save();
@@ -32,6 +32,11 @@ export default async function saveAsset (req, res) {
             return res.status(StatusCodes.FORBIDDEN).json(createRes(StatusCodes.FORBIDDEN, 'Failed to save data'));
         }
 
+        delete saveAsset.addedBy;
+        delete saveAsset.createdAt;
+        delete saveAsset.updatedAt;
+        delete saveAsset.__v;
+        
         return res.status(StatusCodes.OK).json(createRes(StatusCodes.OK, 'Asset saved successfully', savedAsset));
     } catch (error) {
         if (error.name === "ValidationError") {

@@ -16,7 +16,7 @@ export default async function saveEmergencyContact(req, res) {
             secondary,
             other_1,
             other_2,
-            added: _id
+            addedBy: _id
         });
 
         const savedEmergencyContact = await emergencyContact.save();

@@ -8,7 +8,7 @@ export const saveGeneralOverview = async (req, res) => {
         const token = req.headers.authorization.split(' ')[1];
         const { _id } = decodeToken(token);
 
-        const generalOverviewData = { ...req.body, added: _id };
+        const generalOverviewData = { ...req.body, addedBy: _id };
 
         const savedGeneralOverview = await GeneralOverview.create(generalOverviewData);
 

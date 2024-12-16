@@ -57,7 +57,7 @@ const BeneficiarySchema = new mongoose.Schema({
         minlength: 2,
         maxlength: 100,
     },
-    added: {
+    addedBy: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
