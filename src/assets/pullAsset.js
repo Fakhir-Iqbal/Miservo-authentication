@@ -21,7 +21,7 @@ export default async function pullAsset(req, res) {
 
         const result = await AssetModel.aggregate([
             {
-                $match: { addedBy: new mongoose.Types.ObjectId(_id) }
+                $match: { added: new mongoose.Types.ObjectId(_id) }
             },
             {
                 $skip: parseInt(skip)
