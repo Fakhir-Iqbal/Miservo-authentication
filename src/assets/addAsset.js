@@ -23,7 +23,7 @@ export default async function saveAsset (req, res) {
             // documents,
             attorney,
             courtInformation,
-            addedBy: _id
+            added: _id
         });
 
         const savedAsset = await newAsset.save();
