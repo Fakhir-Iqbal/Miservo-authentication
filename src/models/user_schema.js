@@ -62,6 +62,8 @@ const dataSchema = new Schema(
     },
     checkInDuration: {
       type: String,
+      default: 'weekly',
+      enum: ['weekly', 'monthly', 'yearly'],
     },
     gender: {
       type: String,
@@ -78,7 +80,15 @@ const dataSchema = new Schema(
     },
     resetTokenExpiry: {
       type: Date,
-    }
+    },
+    date: {
+      type: Date,
+      default: Date.now()
+    },
+    assignedTo: {
+      type: String,
+      default: 'After 5 Months',
+    },
   },
   { timestamps: true }
 );

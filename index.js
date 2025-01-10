@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { checkReq } from "./src/utils/index.js";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import { checkUsersAndSendEmails, scheduleCronJob } from "./cronJob.js";
 
 // .env configuration
 dotenv.config();
@@ -32,13 +33,15 @@ app.use(express.json());
 app.set("port", process.env.PORT || 4000);
 
 // connection mongodb
-const mongoURI = process.env.MONGO_URI ;
+const mongoURI = process.env.MONGO_URI;
 
 mongoose
   .connect(mongoURI)
-  .then(() =>
-    console.log(chalk.white.bgGreen("---- Connected to MongoDB ----"))
-  )
+  .then(() => {
+    console.log(chalk.white.bgGreen("---- Connected to MongoDB ----"));
+    scheduleCronJob() // Start the cron job
+    checkUsersAndSendEmails()
+  })
   .catch((err) =>
     console.log(chalk.white.bgRed("---- Error Connected MongoDB ----", err))
   );
