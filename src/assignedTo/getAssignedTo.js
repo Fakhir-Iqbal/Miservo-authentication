@@ -1,3 +1,11 @@
+import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import {
+    validateEmail,
+    validatePassword,
+    isAllKeysHasValue,
+    createRes,
+    isAllRequiredKeyExist,
+  } from "../utils/index.js";
 
 const assignedDate = [
     {
@@ -24,7 +32,7 @@ const assignedDate = [
 
 export default function getAssignedTo(req, res) {
     try {
-        return res.status(200).json(assignedDate)
+        return res.status(StatusCodes.OK).json(createRes(StatusCodes.OK, ReasonPhrases.OK, assignedDate));
     } catch (error) {
         return res.status(500).json({ message: error.message })
     }
