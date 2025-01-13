@@ -66,7 +66,7 @@ const createUser = async (req, res) => {
     if (error.code === 11000) { // if email already exist
       return res.status(StatusCodes.BAD_REQUEST).json(createRes(StatusCodes.BAD_REQUEST, "Email is already registered"));
     }
-    
+
     // if (error.name === "ValidationError") { // Handle other validation errors
     //   let messages = [];
     //   for (let field in error.errors) {

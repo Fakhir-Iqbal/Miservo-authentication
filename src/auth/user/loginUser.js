@@ -51,6 +51,8 @@ const loginUser = async (req, res) => {
           expiresIn: "24h",
         });
 
+        user._doc.date = new Date();
+
         delete user._doc.type;
         delete user._doc.password;
         delete user._doc.gender;

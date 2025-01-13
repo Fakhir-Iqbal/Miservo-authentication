@@ -5,35 +5,36 @@ import mongoose from 'mongoose';
 
 
 const modifyUser = async (req, res) => {
-    
-    const {Types: {ObjectId}} = mongoose;
+
+    const { Types: { ObjectId } } = mongoose;
 
     const validateObjectId = (id) => ObjectId.isValid(id) && (new ObjectId(id)).toString() === id; //true or false
     const { id } = req.params
+    const { password, assignedTo, checkInDuration } = req.body
 
-    if (req.body.password) {
+    if ( password ) {
         return res.status(StatusCodes.FORBIDDEN).json(createRes(StatusCodes.FORBIDDEN, "password cannot edit"))
     }
 
     try {
-        
+
         if (!validateObjectId(id)) {
             throw new Error('id-error')
         }
 
-        const updatedResourse = await UserModel.findByIdAndUpdate({_id: id}, req.body, {new: true});
+        const updatedResourse = await UserModel.findByIdAndUpdate({ _id: id }, req.body, { new: true });
 
         if (updatedResourse) {
             return res.status(StatusCodes.OK).json(createRes(StatusCodes.OK, ReasonPhrases.OK, updatedResourse))
         } else {
             return res.status(StatusCodes.NOT_FOUND).json(createRes(StatusCodes.NOT_FOUND, ReasonPhrases.NOT_FOUND))
         }
-        
+
     } catch (error) {
         if (error.code === 11000) {
-            return res.status(StatusCodes.FORBIDDEN).json(createRes(StatusCodes.FORBIDDEN,Object.keys(error.keyValue)[0] + " is already registered"));
+            return res.status(StatusCodes.FORBIDDEN).json(createRes(StatusCodes.FORBIDDEN, Object.keys(error.keyValue)[0] + " is already registered"));
         }
-        
+
         if (error.message === 'id-error') {
             return res.status(StatusCodes.NOT_ACCEPTABLE).json(createRes(StatusCodes.NOT_ACCEPTABLE, 'invalid user id'))
         }
