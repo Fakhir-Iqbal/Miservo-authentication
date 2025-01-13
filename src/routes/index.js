@@ -5,6 +5,7 @@ import asset from './../assets/router.js';
 import attorney from './../attorney/router.js';
 import generalOverview from './../general-overview/router.js';
 import emergencyContact from './../emergency-contact/router.js';
+import assignedDate from './../assignedTo/router.js';
 
 const router = Router();
 
@@ -14,5 +15,6 @@ router.use('/asset', asset)
 router.use('/attorney', attorney)
 router.use('/overview', generalOverview)
 router.use('/emergency-contact', emergencyContact)
+router.use('/assigned-to', assignedDate)
 
 export default router;
